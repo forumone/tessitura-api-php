@@ -24,18 +24,18 @@ class BasicAuth
     protected $ch;
 
     /**
-     * Consumer key.
+     * Tessitura User.
      *
      * @var string
      */
-    protected $consumerKey;
+    protected $authUser;
 
     /**
-     * Consumer secret.
+     * Tessitura Password.
      *
      * @var string
      */
-    protected $consumerSecret;
+    protected $authPass;
 
     /**
      * Do query string auth.
@@ -55,16 +55,16 @@ class BasicAuth
      * Initialize Basic Authentication class.
      *
      * @param resource $ch             cURL handle.
-     * @param string   $consumerKey    Consumer key.
-     * @param string   $consumerSecret Consumer Secret.
+     * @param string   $authUser       Tessitura User.
+     * @param string   $authPass       Tessitura Password.
      * @param bool     $doQueryString  Do or not query string auth.
      * @param array    $parameters     Request parameters.
      */
-    public function __construct($ch, $consumerKey, $consumerSecret, $doQueryString, $parameters = [])
+    public function __construct($ch, $authUser, $authPass, $doQueryString, $parameters = [])
     {
         $this->ch             = $ch;
-        $this->consumerKey    = $consumerKey;
-        $this->consumerSecret = $consumerSecret;
+        $this->authUser    = $authUser;
+        $this->authPass = $authPass;
         $this->doQueryString  = $doQueryString;
         $this->parameters     = $parameters;
 
@@ -77,10 +77,10 @@ class BasicAuth
     protected function processAuth()
     {
         if ($this->doQueryString) {
-            $this->parameters['consumer_key']    = $this->consumerKey;
-            $this->parameters['consumer_secret'] = $this->consumerSecret;
+            $this->parameters['auth_user']    = $this->authUser;
+            $this->parameters['auth_pass'] = $this->authPass;
         } else {
-            \curl_setopt($this->ch, CURLOPT_USERPWD, $this->consumerKey . ':' . $this->consumerSecret);
+            \curl_setopt($this->ch, CURLOPT_USERPWD, $this->authUser . ':' . $this->authPass);
         }
     }
 

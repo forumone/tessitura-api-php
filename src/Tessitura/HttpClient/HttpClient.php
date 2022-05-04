@@ -91,7 +91,7 @@ class HttpClient
      *
      * @param string $url            Tessitura URL.
      * @param string $authUser       Tessitura User.
-     * @param string $authPass       Tessitura Secret.
+     * @param string $authPass       Tessitura Password.
      * @param array  $options        Client options.
      */
     public function __construct($url, $authUser, $authPass, $options)
