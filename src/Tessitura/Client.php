@@ -34,13 +34,13 @@ class Client
      * Initialize client.
      *
      * @param string $url            Store URL.
-     * @param string $consumerKey    Consumer key.
-     * @param string $consumerSecret Consumer secret.
+     * @param string $authUser       Tessitura User.
+     * @param string $authPass       Tessitura Password.
      * @param array  $options        Options (user_agent, timeout, verify_ssl, follow_redirects).
      */
-    public function __construct($url, $consumerKey, $consumerSecret, $options = [])
+    public function __construct($url, $authUser, $authPass, $options = [])
     {
-        $this->http = new HttpClient($url, $consumerKey, $consumerSecret, $options);
+        $this->http = new HttpClient($url, $authUser, $authPass, $options);
     }
 
     /**
