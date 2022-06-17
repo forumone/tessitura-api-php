@@ -336,11 +336,11 @@ class HttpClient
             $errorCode = '';
 
             if (is_array($errors)) {
-                $errorMessage = $errors[0]->message;
-                $errorCode    = $errors[0]->code;
-            } elseif (isset($errors->message, $errors->code)) {
-                $errorMessage = $errors->message;
-                $errorCode    = $errors->code;
+                $errorMessage = $errors[0]->Description;
+                $errorCode    = $errors[0]->Code;
+            } elseif (isset($errors->Description, $errors->Code)) {
+                $errorMessage = $errors->Description;
+                $errorCode    = $errors->Code;
             }
 
             throw new HttpClientException(
